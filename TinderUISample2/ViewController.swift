@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     //カードのセンターの位置情報を入れる変数
     var cardCenter:CGPoint!
-    // Screenの高さとScreenの幅を入れるための変数。後で使う。
+    // Screenの高さとScreenの幅を入れるための変数.後で使う.
     var screenHeight:CGFloat!
     var screenWidth:CGFloat!
     
@@ -40,6 +40,20 @@ class ViewController: UIViewController {
     
     
     @IBAction func swipeAct(_ sender: UIPanGestureRecognizer) {
+        //senderはドラックアンドドロップされたもの.スワイプされた時の情報.
+        let swipeCard = sender.view!
+        //どれくらいスワイプしたかの位置情報.
+        let point = sender.translation(in:view)
+        //スワイプ後のx座標とスワイプ前のx座標の差.プラスなら右、マイナスなら左に移動したことになる.
+        let swipeDistanceX = swipeCard.center.x - view.center.x
+        
+        
+        //基本となるカードスワイプした分カードを動かす。
+        swipeCard.center = CGPoint(x: swipeCard.center.x + point.x * 0.1,y:swipeCard.center.y)//スワイプした時にx座標だけ動かす。
+        swipeCard.transform = CGAffineTransform(rotationAngle: swipeDistanceX/(view.frame.width/2) * -0.785)//Max45度の傾き。スワイプした距離に応じて傾きを変える
+        
+        
+        
     }
     
     
