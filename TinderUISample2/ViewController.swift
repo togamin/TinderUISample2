@@ -142,8 +142,17 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func resetBtn(_ sender: UIButton) {
+        rightInfo = []
+        leftInfo = []
+        cardNum = 0
+        nextCard = 1
+        cardImage.image = UIImage(named:imageList[cardNum])
+        backCardImage.image = UIImage(named:imageList[nextCard])
+        card.alpha = 1
+        backCard.alpha = 1
+    }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
