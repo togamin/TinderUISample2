@@ -10,10 +10,28 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var card: UIView!
+    @IBOutlet weak var cardImage: UIImageView!
+    
+    @IBOutlet weak var backCard: UIView!
+    @IBOutlet weak var backCardImage: UIImageView!
+    
+    var imageList:[String]!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        imageList = ["animal01.png","animal02.png","animal03.png","animal04.png","animal05.png"]
+        
+        
     }
+    
+    
+    @IBAction func swipeAct(_ sender: UIPanGestureRecognizer) {
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
