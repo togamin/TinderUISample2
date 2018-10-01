@@ -29,11 +29,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bck-OT-DTu">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bck-OT-DTu" userLabel="frontCard">
                                 <rect key="frame" x="37" y="208" width="300" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFm-vr-GdJ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFm-vr-GdJ" userLabel="frontCard Image">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -60,8 +60,8 @@
                     <connections>
                         <outlet property="backCard" destination="G6d-20-jQw" id="xru-uX-Mdz"/>
                         <outlet property="backCardImage" destination="egj-Rz-Lwj" id="ilQ-Lz-i3j"/>
-                        <outlet property="card" destination="Bck-OT-DTu" id="O68-M0-DkC"/>
-                        <outlet property="cardImage" destination="SFm-vr-GdJ" id="hS4-ao-Sc7"/>
+                        <outlet property="frontCard" destination="Bck-OT-DTu" id="OFA-pM-FRu"/>
+                        <outlet property="frontCardImage" destination="SFm-vr-GdJ" id="y9s-ON-3Bb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

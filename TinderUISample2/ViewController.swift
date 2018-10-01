@@ -10,8 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var card: UIView!
-    @IBOutlet weak var cardImage: UIImageView!
+    @IBOutlet weak var frontCard: UIView!
+    @IBOutlet weak var frontCardImage: UIImageView!
+    
     
     @IBOutlet weak var backCard: UIView!
     @IBOutlet weak var backCardImage: UIImageView!
@@ -24,7 +25,6 @@ class ViewController: UIViewController {
     //カードのセンターの位置情報を入れる変数
     var cardCenter:CGPoint!
     // Screenの高さとScreenの幅を入れるための変数.後で使う.
-    var screenHeight:CGFloat!
     var screenWidth:CGFloat!
     
     //右,左にスワイプされた時に情報を入れる箱
@@ -36,16 +36,17 @@ class ViewController: UIViewController {
         
         imageList = ["animal01.png","animal02.png","animal03.png","animal04.png","animal05.png"]
         imageCount = imageList.count
-        cardImage.image = UIImage(named:imageList[cardNum])
+        
+        frontCardImage.image = UIImage(named:imageList[cardNum])
         backCardImage.image = UIImage(named:imageList[nextCard])
-        cardImage.contentMode = .scaleAspectFit
+        
+        frontCardImage.contentMode = .scaleAspectFit
         backCardImage.contentMode = .scaleAspectFit
         //カードのセンターの位置を代入。
-        cardCenter = card.center
+        cardCenter = frontCard.center
         // 画面サイズ取得
         let screenSize: CGRect = UIScreen.main.bounds
         screenWidth = screenSize.width
-        screenHeight = screenSize.height
         
     }
     
@@ -73,21 +74,20 @@ class ViewController: UIViewController {
                 UIView.animate(withDuration: 0, animations: {
                     //カードを画面外に飛ばす
                     swipeCard.center = CGPoint(x: self.cardCenter.x + self.screenWidth,y:self.cardCenter.y)
+                    //スワイプされたカードの情報を保持
+                    self.leftInfo.append(self.imageList[self.cardNum])
+                    print("左スワイプデータ：",self.leftInfo)
                     //カードを透明にする
                     swipeCard.alpha = 0
                     //カードを元の位置に戻す
                     swipeCard.center = CGPoint(x: self.cardCenter.x,y:self.cardCenter.y)
                     swipeCard.transform = .identity
                     //「backCard」の情報を「Card」に入れる
-                    self.cardImage.image = self.backCardImage.image
+                    self.frontCardImage.image = self.backCardImage.image
                     //カードを見えるようにする
                     swipeCard.alpha = 1
-                    //スワイプされたカードの情報を保持
-                    self.leftInfo.append(self.imageList[self.cardNum])
-                    print("左スワイプデータ：",self.leftInfo)
                     //「backCard」の情報に次のカードの情報を入れる.カードが最後の一枚の時、「backCard」を消し、カードがなくなったら「card」も消す。
                     if self.cardNum < self.imageCount - 2{
-                        //スワイプされたカードの情報を保持
                         self.cardNum += 1
                         self.nextCard += 1
                         self.backCardImage.image = UIImage(named:self.imageList[self.nextCard])
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
                         self.cardNum += 1
                         self.backCard.alpha = 0
                     }else if self.cardNum == self.imageCount - 1{
-                        self.card.alpha = 0
+                        self.frontCard.alpha = 0
                         print("カードがなくなりました。")
                     }
                 })
@@ -105,18 +105,18 @@ class ViewController: UIViewController {
                 UIView.animate(withDuration: 0, animations: {
                     //カードを画面外に飛ばす
                     swipeCard.center = CGPoint(x: self.cardCenter.x - self.screenWidth,y:self.cardCenter.y)
+                    //スワイプされたカードの情報を保持
+                    self.rightInfo.append(self.imageList[self.cardNum])
+                    print("右スワイプデータ：",self.rightInfo)
                     //カードを透明にする
                     swipeCard.alpha = 0
                     //カードを元の位置に戻す
                     swipeCard.center = CGPoint(x: self.cardCenter.x,y:self.cardCenter.y)
                     swipeCard.transform = .identity
                     //「backCard」の情報を「Card」に入れる
-                    self.cardImage.image = self.backCardImage.image
+                    self.frontCardImage.image = self.backCardImage.image
                     //カードを見えるようにする
                     swipeCard.alpha = 1
-                    //スワイプされたカードの情報を保持
-                    self.rightInfo.append(self.imageList[self.cardNum])
-                    print("右スワイプデータ：",self.rightInfo)
                     //「backCard」の情報に次のカードの情報を入れる.カードが最後の一枚の時、「backCard」を消し、カードがなくなったら「card」も消す。
                     if self.cardNum < self.imageCount - 2{
                         self.cardNum += 1
@@ -126,7 +126,7 @@ class ViewController: UIViewController {
                         self.cardNum += 1
                         self.backCard.alpha = 0
                     }else if self.cardNum == self.imageCount - 1{
-                        self.card.alpha = 0
+                        self.frontCard.alpha = 0
                         print("カードがなくなりました。")
                     }
                 })
@@ -147,9 +147,9 @@ class ViewController: UIViewController {
         leftInfo = []
         cardNum = 0
         nextCard = 1
-        cardImage.image = UIImage(named:imageList[cardNum])
+        frontCardImage.image = UIImage(named:imageList[cardNum])
         backCardImage.image = UIImage(named:imageList[nextCard])
-        card.alpha = 1
+        frontCard.alpha = 1
         backCard.alpha = 1
     }
     
